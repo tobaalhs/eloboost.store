@@ -145,25 +145,29 @@
 
 .rank-arrow {
     font-size: 32px;
-    margin-top: -20px;
     color: #4a90e2;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .rank-images-container {
     position: relative;
     width: 100px;
     height: 100px;
+    overflow: hidden;
 }
 
 .rank-image {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     visibility: hidden;
+    object-fit: contain;
 }
 
 .rank-image.active {
@@ -230,13 +234,23 @@
     cursor: grabbing;
 }
 
+.rank-text-container {
+    width: 120px;
+    text-align: center;
+    min-height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .rank-text {
     margin-top: 10px;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: #fff;
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
-    min-height: 36px;
+    line-height: 1.2;
 }
 
 .pay-button {
@@ -511,5 +525,12 @@
     .range-button {
         padding: 6px 12px;
         font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rank-images-container {
+        width: 80px;
+        height: 80px;
     }
 }
