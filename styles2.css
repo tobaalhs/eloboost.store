@@ -39,11 +39,23 @@
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    transition: color 0.3s;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #FFD700;
+    background-color: #FFD700;
+    color: #2E0854;
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+.nav-links a.active {
+    background-color: #FFD700;
+    color: #2E0854;
+    font-weight: bold;
 }
 
 .hero {
@@ -327,6 +339,12 @@
     margin: 15px 0;
 }
 
+.range-option input[type="radio"]:checked + .range-button {
+    background: #FFD700;
+    color: #2E0854;
+    font-weight: bold;
+}
+
 .range-option {
     position: relative;
 }
@@ -356,21 +374,89 @@
     background: rgba(255, 215, 0, 0.2);
 }
 
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.options-title {
+    margin: 0;
+    color: #FFD700;
+    font-size: 1.3em;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.price-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.price-tag.free {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.price-tag.extra {
+    background-color: #FFA726;
+    color: white;
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 20;
+}
+
 @media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block; /* Visible on small screens */
+    }
+
     .navbar {
         padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row; /* Keep it as row */
+        justify-content: space-between; /* Space between logo and menu toggle */
+        align-items: center;
+        position: relative;
     }
 
     .nav-links {
-        flex-direction: column;
-        align-items: center;
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(46, 8, 84, 0.95);
+        padding: 20px;
+        z-index: 10;
     }
 
     .nav-links.active {
         display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
     }
 
     .hero h1 {
@@ -385,63 +471,45 @@
         flex-direction: column;
         gap: 15px;
     }
-}
 
-.title-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-}
+    .slider-container {
+        width: 90%;
+        padding: 20px;
+    }
 
-.price-tag {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    font-weight: bold;
-}
+    .slider-wrapper {
+        height: 40px;
+    }
 
-.price-tag.free {
-    background-color: #4CAF50;
-    color: white;
-}
+    .slider {
+        height: 8px;
+    }
 
-.price-tag.extra {
-    background-color: #FFA726;
-    color: white;
-}.title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;  /* Centra horizontalmente */
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    width: 100%;             /* Asegura que tome todo el ancho disponible */
-}
+    .slider-thumb {
+        width: 20px;
+        height: 20px;
+    }
 
-.options-title {
-    margin: 0;              /* Elimina los márgenes por defecto del h3 */
-    color: #FFD700;
-    font-size: 1.3em;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
+    .rank-images-container {
+        width: 80px;
+        height: 80px;
+    }
 
-.price-tag {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    font-weight: bold;
-    flex-shrink: 0;        /* Evita que la etiqueta de precio se encoja */
-}
+    .rank-image {
+        width: 80px;
+        height: 80px;
+    }
 
-.price-tag.free {
-    background-color: #4CAF50;
-    color: white;
-}
+    .rank-text {
+        font-size: 18px;
+    }
 
-.price-tag.extra {
-    background-color: #FFA726;
-    color: white;
-}
+    .range-options {
+        flex-wrap: wrap;
+    }
 
+    .range-button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
