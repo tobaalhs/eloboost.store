@@ -7,6 +7,25 @@ const rankTextTo = document.getElementById('rankTextTo');
 const rankImagesFrom = document.querySelector('.rank-display.from').querySelectorAll('.rank-image');
 const rankImagesTo = document.querySelector('.rank-display.to').querySelectorAll('.rank-image');
 
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !isExpanded);
+    navLinks.classList.toggle('active');
+});
+
+document.addEventListener('click', (event) => {
+    const isClickInsideMenu = navLinks.contains(event.target);
+    const isClickOnToggle = menuToggle.contains(event.target);
+    
+    if (!isClickInsideMenu && !isClickOnToggle && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }
+});
+
 // Redefined ranks without prices
 const ranks = [
     { name: 'Hierro IV', rankType: 'iron', minValue: 0 },
@@ -97,22 +116,17 @@ function getValueFromPosition(clientX) {
     return value;
 }
 
-thumbFrom.addEventListener('mousedown', (e) => {
+function handleStart(e) {
     isDragging = true;
-    currentThumb = 'from';
+    currentThumb = e.target.id === 'thumbFrom' ? 'from' : 'to';
     e.preventDefault();
-});
+}
 
-thumbTo.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    currentThumb = 'to';
-    e.preventDefault();
-});
-
-document.addEventListener('mousemove', (e) => {
+function handleMove(e) {
     if (!isDragging) return;
     
-    const value = getValueFromPosition(e.clientX);
+    const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    const value = getValueFromPosition(clientX);
     const divisionDistance = 3;
 
     if (currentThumb === 'from') {
@@ -126,12 +140,24 @@ document.addEventListener('mousemove', (e) => {
     }
     
     updateUI();
-});
+}
 
-document.addEventListener('mouseup', () => {
+function handleEnd() {
     isDragging = false;
     currentThumb = null;
-});
+}
+
+thumbFrom.addEventListener('mousedown', handleStart);
+thumbFrom.addEventListener('touchstart', handleStart);
+
+thumbTo.addEventListener('mousedown', handleStart);
+thumbTo.addEventListener('touchstart', handleStart);
+
+document.addEventListener('mousemove', handleMove);
+document.addEventListener('touchmove', handleMove, { passive: false });
+
+document.addEventListener('mouseup', handleEnd);
+document.addEventListener('touchend', handleEnd);
 
 slider.addEventListener('click', (e) => {
     const value = getValueFromPosition(e.clientX);
@@ -153,7 +179,11 @@ slider.addEventListener('click', (e) => {
     updateUI();
 });
 
-updateUI();
+// Prevent default touch behavior to avoid scrolling while using the slider
+slider.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+}, { passive: false });
+
 
 // Función para formatear el nombre de la línea
 function formatLaneName(lane) {
@@ -185,6 +215,8 @@ payButton.addEventListener('click', () => {
     const selectedLPGain = document.querySelector('input[name="lp-gain"]:checked').value;
     const selectedFlash = document.querySelector('input[name="flash-choice"]:checked').value;
     const selectedLane = document.querySelector('input[name="lane-choice"]:checked').value;
+    const selectedQueue = document.querySelector('input[name="queue-choice"]:checked').value;
+    const queueText = selectedQueue === 'soloq' ? 'SoloQ' : 'FlexQ';
 
     // Calcular extras y sus costos
     let extras = [];
@@ -193,15 +225,16 @@ payButton.addEventListener('click', () => {
     
     // Crear el mensaje para WhatsApp
     const mensaje = `¡Hola! Me gustaría solicitar un Boost:%0A%0A` +
-        `Rango Actual: ${selectedRankFrom.name}%0A` +
-        `Rango Objetivo: ${selectedRankTo.name}%0A` +
-        `LP Actuales: ${selectedLPRange}%0A` +
-        `LP por Victoria: ${selectedLPGain}%0A` +
-        `Línea Preferida: ${formatLaneName(selectedLane)}%0A` +
-        `Flash: ${formatFlashOption(selectedFlash)}%0A%0A` +
-        `${extrasText}%0A%0A` +
-        `Por favor, ¿podrían indicarme el precio?`;
-    
+    `Rango Actual: ${selectedRankFrom.name}%0A` +
+    `Rango Objetivo: ${selectedRankTo.name}%0A` +
+    `Cola de Emparejamiento: ${queueText}%0A` +
+    `LP Actuales: ${selectedLPRange}%0A` +
+    `LP por Victoria: ${selectedLPGain}%0A` +
+    `Línea Preferida: ${formatLaneName(selectedLane)}%0A` +
+    `Flash: ${formatFlashOption(selectedFlash)}%0A%0A` +
+    `${extrasText}%0A%0A` +
+    `Por favor, ¿podrían indicarme el precio?`;
+
     // Número de WhatsApp al que se enviará el mensaje
     const numeroWhatsApp = '991991705';
     
@@ -209,3 +242,5 @@ payButton.addEventListener('click', () => {
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
     window.open(urlWhatsApp, '_blank');
 });
+
+updateUI();
