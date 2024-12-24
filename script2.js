@@ -89,8 +89,8 @@ function updateUI() {
     
     updateRankImages(rankImagesFrom, fromRank.rankType);
     updateRankImages(rankImagesTo, toRank.rankType);
-    rankTextFrom.textContent = fromRank.name;
-    rankTextTo.textContent = toRank.name;
+    rankTextFrom.innerHTML = formatRankName(fromRank.name);
+    rankTextTo.innerHTML = formatRankName(toRank.name);
 }
 
 function getRankByValue(value) {
@@ -244,3 +244,14 @@ payButton.addEventListener('click', () => {
 });
 
 updateUI();
+
+function formatRankName(name) {
+    const parts = name.split(' ');
+    if (parts.length > 2) {
+        return `${parts[0]} ${parts[1]}<br>${parts.slice(2).join(' ')}`;
+    } else if (parts.length > 1) {
+        return `${parts[0]}<br>${parts.slice(1).join(' ')}`;
+    }
+    return name;
+}
+
