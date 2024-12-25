@@ -41,9 +41,10 @@
 }
 
 .faq-answer.active {
-    padding: 1rem;
-    max-height: 1000px; /* Adjust this value as needed */
+    padding: 1rem 1rem 6rem; 
+    max-height: 1000px;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {
