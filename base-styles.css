@@ -1,0 +1,311 @@
+@font-face {
+    font-family: 'a Black Lives';
+    src: url('/fonts/ablacklives-webfont.woff2') format('woff2'),
+         url('/fonts/ablacklives-webfont.woff') format('woff'),
+         url('/fonts/aBlackLives.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/poppins-regular-webfont.woff2') format('woff2'),
+         url('/fonts/poppins-regular-webfont.woff') format('woff'),
+         url('/fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.logo b, .logo span {
+    font-family: 'a Black Lives', sans-serif !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.top-banner {
+    background-color: #e2b00c;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.navbar {
+    background: linear-gradient(to right, #4A0082, #2E0854);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, #FFD700, transparent);
+    animation: line-appear 2s linear infinite;
+}
+
+
+.logo {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #FFD700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    background-color: #FFD700;
+    color: #2E0854;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.nav-links a.active {
+    background-color: #FFD700;
+    color: #2E0854;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(rgba(74, 0, 130, 0.8), rgba(46, 8, 84, 0.65)), 
+                url('https://images3.alphacoders.com/135/1350572.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#FFD700 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    position: relative;
+    color: #e2b00c;
+}
+
+.hero p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.boosters-bold {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+
+.start-btn, .pay-button {
+    background-color: #FFD700;
+    color: #4A0082;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 30px;
+    position: relative;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    animation: breathe 4s ease-in-out infinite;
+    will-change: transform;
+}
+
+.start-btn:hover, .pay-button:hover {
+    background-color: #ffea73;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 20;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(46, 8, 84, 0.95);
+        padding: 20px;
+        z-index: 10;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero h2 {
+        font-size: 1.8em;
+    }
+}
+
+@keyframes breathe {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+.footer {
+
+    background: linear-gradient(to right, #4A0082, #2E0854);
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #FFD700, transparent);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+.footer-text {
+    color: #FFD700;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    
+}
+
+.social-icons a {
+    color: #FFD700;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+}
+
