@@ -190,26 +190,30 @@
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
+        position: relative;
+        z-index: 1000; /* Ensure it's above other elements */
     }
 
     .navbar {
         padding: 15px 20px;
-        flex-direction: row; 
-        justify-content: space-between;
-        align-items: center;
+        flex-wrap: wrap;
         position: relative;
     }
 
     .nav-links {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed; /* Change from absolute to fixed */
+        top: 0;
         left: 0;
-        right: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
         background-color: rgba(46, 8, 84, 0.95);
-        padding: 20px;
-        z-index: 10;
+        padding: 130px 20px 20px; /* Increased top padding to push links lower */
+        z-index: 100;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-y: auto; /* Allow scrolling if needed */
     }
 
     .nav-links.active {
@@ -217,8 +221,9 @@
     }
 
     .nav-links a {
-        padding: 10px 0;
+        width: 100%;
         text-align: center;
+        padding: 15px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
