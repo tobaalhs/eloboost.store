@@ -54,9 +54,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 0.5px;
+    height: 1px; /* Aumenté de 0.5px a 1px */
     background: linear-gradient(to right, transparent, #FFD700, transparent);
-    animation: line-appear 2s linear infinite;
+    opacity: 0.7; /* Añadí opacidad para mayor visibilidad */
 }
 
 
@@ -237,6 +237,10 @@
 
     .hero h2 {
         font-size: 1.8em;
+    }
+    .navbar::after {
+        height: 1px;
+        opacity: 0.7;
     }
 }
 
