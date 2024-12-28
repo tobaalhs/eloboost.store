@@ -28,7 +28,7 @@ const LP_DISCOUNTS = {
 };
 
 const LP_GAIN_MODIFIERS = {
-    '1-20': 1.1,    // +10% para LP gain bajo
+    '1-19': 1.1,    // +10% para LP gain bajo
     '20-25': 1,     // sin cambio para LP gain normal
     '26+': 0.95      // -10% para LP gain alto
 };
