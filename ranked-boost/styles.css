@@ -389,6 +389,17 @@
         padding: 6px 12px;
         font-size: 14px;
     }
+    .info-icon {
+        min-width: 18px; /* Prevent icon from shrinking */
+        min-height: 18px; /* Prevent icon from shrinking */
+        font-size: 12px; /* Slightly smaller font on mobile */
+    }
+
+    .info-tooltip {
+        width: 160px; /* Slightly narrower tooltip on mobile */
+        margin-left: -80px; /* Adjust center position for new width */
+        font-size: 11px; /* Smaller font for tooltip on mobile */
+    }
 }
 
 .highelo-message {
@@ -449,7 +460,7 @@
     border-radius: 50%;
     font-style: bold;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 13px;
     color: #2E0854;
     vertical-align: middle;
     line-height: 1;
