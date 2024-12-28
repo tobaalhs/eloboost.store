@@ -193,7 +193,7 @@ payButton.addEventListener('click', () => {
     `Por favor, ¿podrían indicarme el precio?`;
 
     // WhatsApp number to send the message
-    const numeroWhatsApp = '991991705';
+    const numeroWhatsApp = '+56991991705';
     
     // Create the WhatsApp link and open it in a new tab
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
