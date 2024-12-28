@@ -189,9 +189,24 @@ function getValueFromPosition(clientX) {
 }
 
 function getClosestRankValue(value) {
+    // Si el valor está cerca de Challenger (97 o más), siempre ir al final
     if (value >= 97) {
-        return 100; 
+        return 100;
     }
+
+    // Para valores que podrían estar cerca de Challenger pero no lo suficiente,
+    // forzar a que vaya al valor anterior más cercano
+    const challengerStartValue = 97;
+    if (Math.abs(value - challengerStartValue) <= 1.5) {
+        // Encontrar el valor anterior más cercano
+        for (let i = ranks.length - 2; i >= 0; i--) {
+            if (value > ranks[i].minValue) {
+                return ranks[i].minValue;
+            }
+        }
+    }
+    
+    // Para todos los demás casos, encuentra el valor más cercano normalmente
     let closestValue = ranks[0].minValue;
     let minDiff = Math.abs(value - ranks[0].minValue);
     
