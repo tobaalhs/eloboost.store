@@ -300,6 +300,8 @@
     color: #FFD700;
     font-size: 1.3em;
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: block;
+    margin: 0 auto;
 }
 
 .price-tag {
