@@ -218,7 +218,7 @@ function updateChampionWarning() {
     }
 }
 
-let DEBUG_MODE = true;
+let DEBUG_MODE = false;
 
 function debugLog(...args) {
     if (DEBUG_MODE) {
