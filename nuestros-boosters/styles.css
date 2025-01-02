@@ -1,0 +1,124 @@
+@import url('/base-styles.css');
+
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#FFD700 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero-text {
+    flex: 1;
+    padding-right: 2rem;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    position: relative;
+    color: #e2b00c;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin: 20px 0;
+    position: relative;
+    line-height: 1.2;
+}
+
+.hero-image {
+    flex: 0 0 auto;
+    max-width: 300px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%; /* Aumenta el ancho para hacerlo más ovalado */
+    height: 75%; /* Reduce la altura */
+    background: radial-gradient(ellipse, rgba(255, 215, 0, 0.7) 0%, rgba(255, 215, 0, 0) 70%);
+    filter: blur(15px);
+    z-index: 1;
+    animation: glow-breath 4s ease-in-out infinite;
+}
+
+
+@keyframes glow-breath {
+    0%, 100% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-text {
+        padding-right: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: -1;
+        margin-bottom: 2rem;
+        max-width: 250px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero h2 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+}
+
