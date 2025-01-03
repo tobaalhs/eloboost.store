@@ -1,4 +1,5 @@
 // price-calculator.js
+
 const DIVISION_PRICES = {
     iron: 1500,
     bronze: 1800,
@@ -20,6 +21,29 @@ const LEAGUE_COMPLETE_PRICES = {
     master: 25000,
     grandmaster: 50000
 };
+/*
+const DIVISION_PRICES = {
+    iron: 2000,
+    bronze: 2000,
+    silver: 2500,
+    gold: 3000,
+    platinum: 3500,
+    emerald: 5000,
+    diamond: 8000
+};
+
+const LEAGUE_COMPLETE_PRICES = {
+    iron: 7000,
+    bronze: 7000,
+    silver: 9000,
+    gold: 11000,
+    platinum: 12500,
+    emerald: 18500,
+    diamond: 30000,
+    master: 35000,
+    grandmaster: 50000
+};
+*/
 
 const LP_DISCOUNTS = {
     '0-29': 0,
