@@ -1,5 +1,5 @@
 // price-calculator.js
-
+/*
 const DIVISION_PRICES = {
     iron: 1500,
     bronze: 1800,
@@ -21,7 +21,7 @@ const LEAGUE_COMPLETE_PRICES = {
     master: 25000,
     grandmaster: 50000
 };
-/*
+*/
 const DIVISION_PRICES = {
     iron: 2000,
     bronze: 2000,
@@ -40,10 +40,10 @@ const LEAGUE_COMPLETE_PRICES = {
     platinum: 12500,
     emerald: 18500,
     diamond: 30000,
-    master: 35000,
+    master: 30000,
     grandmaster: 50000
 };
-*/
+
 
 const LP_DISCOUNTS = {
     '0-29': 0,
@@ -52,9 +52,9 @@ const LP_DISCOUNTS = {
 };
 
 const LP_GAIN_MODIFIERS = {
-    '1-19': 1.1,    // +10% para LP gain bajo
-    '20-25': 1,     // sin cambio para LP gain normal
-    '26+': 0.95      // -10% para LP gain alto
+    '1-19': 1.2,
+    '20-25': 1,
+    '26+': 0.95
 };
 
 const RANK_ORDER = ['iron', 'bronze', 'silver', 'gold', 'platinum', 'emerald', 'diamond', 'master', 'grandmaster', 'challenger'];
