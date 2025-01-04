@@ -20,36 +20,152 @@ const champions = [
 ];
 
 window.selectedChampions = new Set();
+window.availableChampions = new Set(champions);
+
+function clearSelectedChampions() {
+    selectedChampions.clear();
+    window.availableChampions = new Set(champions);
+    const container = document.getElementById('selectedChampions');
+    container.innerHTML = '';
+    updateChampionWarning();
+    updatePoolChampVisibility();
+    updatePrice(getRankByValue(fromValue).name, getRankByValue(toValue).name);
+}
+
+
+function updateChampionSectionState(isEnabled) {
+    const championSearch = document.getElementById('championSearch');
+    const championDropdown = document.getElementById('championDropdown');
+    const dropdownArrow = document.querySelector('.dropdown-arrow');
+
+    // Configurar el estado del input de búsqueda
+    championSearch.disabled = !isEnabled;
+    championSearch.style.opacity = isEnabled ? '1' : '0.5';
+    championSearch.style.cursor = isEnabled ? 'text' : 'not-allowed';
+    championSearch.placeholder = isEnabled
+        ? "Seleccionar campeón..."
+        : "Selecciona una línea primero";
+
+    // Invertir la funcionalidad de la flecha (pero no la opacidad)
+    dropdownArrow.style.opacity = !isEnabled ? '0.5' : '1'; // Aquí sigue la lógica normal
+    dropdownArrow.style.cursor = !isEnabled ? 'pointer' : 'not-allowed';
+
+    // Gestionar el evento de clic de la flecha (al revés)
+    dropdownArrow.removeEventListener('click', handleArrowClick); // Limpia eventos previos
+    if (!isEnabled) {
+        dropdownArrow.addEventListener('click', handleArrowClick);
+    } else {
+        // Cierra el dropdown si se "desactiva" (realmente, activado)
+        championDropdown.classList.remove('active');
+        dropdownArrow.classList.remove('active');
+    }
+}
+
+
+
+
+
+function handleArrowClick(e) {
+    e.stopPropagation(); // Evitar que otros eventos interfieran
+    const dropdown = document.getElementById('championDropdown');
+    const arrow = document.querySelector('.dropdown-arrow');
+    const isActive = dropdown.classList.contains('active');
+
+    if (isActive) {
+        dropdown.classList.remove('active');
+        arrow.classList.remove('active');
+    } else {
+        // Actualiza la lista de campeones y abre el dropdown
+        showAllChampions();
+        dropdown.classList.add('active');
+        arrow.classList.add('active');
+    }
+}
+
+
+
+
+document.querySelectorAll('input[name="lane-choice"]').forEach(input => {
+    input.addEventListener('change', () => {
+        const isLaneSelected = input.value !== 'none';
+        
+        updateChampionSectionState(isLaneSelected);
+        
+        if (!isLaneSelected) {
+            clearSelectedChampions();
+        }
+        
+        updateLanePriceTag();
+        const fromRank = getRankByValue(fromValue);
+        const toRank = getRankByValue(toValue);
+        if (fromRank && toRank && fromRank.name && toRank.name) {
+            updatePrice(fromRank.name, toRank.name);
+        }
+    });
+});
+
+function showAllChampions() {
+    const dropdown = document.getElementById('championDropdown');
+    dropdown.innerHTML = '';
+    
+    Array.from(window.availableChampions).sort().forEach(champ => {
+        const option = document.createElement('div');
+        option.className = 'champion-option';
+        
+        const img = document.createElement('img');
+        img.src = `https://wiki.leagueoflegends.com/en-us/images/${champ}_OriginalSquare.png?62007`;
+        img.alt = formatChampionName(champ);
+        img.onerror = () => handleImageError(img);
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = formatChampionName(champ);
+        
+        option.appendChild(img);
+        option.appendChild(nameSpan);
+        
+        option.addEventListener('click', () => {
+            addChampion(champ, formatChampionName(champ));
+        });
+        dropdown.appendChild(option);
+    });
+}
+
+function formatChampionName(name) {
+    return name
+        .replace(/%27/g, "'")
+        .replace(/_/g, " ")
+        .replace(/\./g, "");
+}
+
+
+function handleImageError(img) {
+    img.onerror = null; // Prevenir bucle infinito
+    img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTJweCI+PzwvdGV4dD48L3N2Zz4=';
+}
 
 function initializeChampionSelector() {
     const searchInput = document.getElementById('championSearch');
     const dropdown = document.getElementById('championDropdown');
     const arrow = document.querySelector('.dropdown-arrow');
-    
-    function formatChampionName(name) {
-        return name
-            .replace(/%27/g, "'")  // Reemplazar %27 con '
-            .replace(/_/g, " ")    // Reemplazar _ con espacio
-            .replace(/\./g, "");   // Eliminar puntos si hay
-    }
-    
+
     function showAllChampions() {
         dropdown.innerHTML = '';
-        champions.forEach(champ => {
+        const availableChampions = champions.filter(champ => !selectedChampions.has(champ));
+        availableChampions.forEach(champ => {
             const option = document.createElement('div');
             option.className = 'champion-option';
-            
+
             const img = document.createElement('img');
             img.src = `https://wiki.leagueoflegends.com/en-us/images/${champ}_OriginalSquare.png?62007`;
             img.alt = formatChampionName(champ);
             img.onerror = () => handleImageError(img);
-    
+
             const nameSpan = document.createElement('span');
             nameSpan.textContent = formatChampionName(champ);
-            
+
             option.appendChild(img);
             option.appendChild(nameSpan);
-            
+
             option.addEventListener('click', () => {
                 addChampion(champ, formatChampionName(champ));
             });
@@ -62,10 +178,8 @@ function initializeChampionSelector() {
         img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTJweCI+PzwvdGV4dD48L3N2Zz4=';
     }
 
-    arrow.addEventListener('click', (e) => {
-        e.stopPropagation();
+    function toggleDropdown() {
         const isActive = dropdown.classList.contains('active');
-        
         if (isActive) {
             dropdown.classList.remove('active');
             arrow.classList.remove('active');
@@ -74,68 +188,65 @@ function initializeChampionSelector() {
             dropdown.classList.add('active');
             arrow.classList.add('active');
         }
-    });
+    }
 
-    // Mostrar/ocultar dropdown al hacer clic en el input
-    searchInput.addEventListener('click', function(e) {
+    // Mostrar todos los campeones al hacer clic en el input
+    searchInput.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isActive = dropdown.classList.contains('active');
-        
-        if (!isActive) {
-            showAllChampions();
-            dropdown.classList.add('active');
-            arrow.classList.add('active');
-        }
+        showAllChampions(); // Actualizar lista antes de desplegar
+        dropdown.classList.add('active');
+        arrow.classList.add('active');
     });
 
-    
+    // Mostrar todos los campeones al hacer clic en la flecha
+    arrow.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+    });
 
-    // Filtrar campeones al escribir
-    searchInput.addEventListener('input', function() {
+    // Filtrar campeones al escribir en el input
+    searchInput.addEventListener('input', function () {
         const searchValue = this.value.toLowerCase();
         const filtered = champions.filter(champ => 
+            !selectedChampions.has(champ) &&
             formatChampionName(champ).toLowerCase().includes(searchValue)
         );
-        
+
         dropdown.innerHTML = '';
         filtered.forEach(champ => {
             const option = document.createElement('div');
             option.className = 'champion-option';
-            
+
             const img = document.createElement('img');
             img.src = `https://wiki.leagueoflegends.com/en-us/images/${champ}_OriginalSquare.png?62007`;
             img.alt = formatChampionName(champ);
             img.onerror = () => handleImageError(img);
-    
+
             const nameSpan = document.createElement('span');
             nameSpan.textContent = formatChampionName(champ);
-            
+
             option.appendChild(img);
             option.appendChild(nameSpan);
-            
+
             option.addEventListener('click', () => {
                 addChampion(champ, formatChampionName(champ));
             });
             dropdown.appendChild(option);
         });
-        
+
         dropdown.classList.add('active');
         arrow.classList.add('active');
     });
-    
-    // Cerrar dropdown cuando se hace clic fuera
-    document.addEventListener('click', function(e) {
+
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', (e) => {
         if (!e.target.closest('.champion-search')) {
             dropdown.classList.remove('active');
             arrow.classList.remove('active');
         }
     });
-
-    // Prevenir que el clic en el dropdown cierre el mismo
-    dropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
 }
+
 
 function updatePoolChampVisibility() {
     const container = document.getElementById('poolChampContainer');
@@ -156,12 +267,16 @@ function updateButtonState() {
 }
 
 function addChampion(championId, displayName) {
+    const selectedLane = document.querySelector('input[name="lane-choice"]:checked').value;
+    if (selectedLane === 'none') return; // No permitir añadir campeones si no hay línea seleccionada
+
     if (selectedChampions.has(championId)) return;
     
     selectedChampions.add(championId);
+    window.availableChampions.delete(championId);
+    showAllChampions(); // Actualizamos la lista inmediatamente
 
-    // Ocultar el mensaje de advertencia si alcanzamos 3 campeones
-    if (selectedChampions.size >= 5) { // Cambiado de 3 a 5
+    if (selectedChampions.size >= 5) {
         document.getElementById('minChampionsWarning').style.display = 'none';
     }
 
@@ -180,11 +295,16 @@ function addChampion(championId, displayName) {
     removeButton.textContent = '×';
     removeButton.addEventListener('click', () => {
         selectedChampions.delete(championId);
+        window.availableChampions.add(championId);
         championElement.remove();
         updateChampionWarning();
         updatePoolChampVisibility();
         
-        // Ocultar el mensaje si no hay campeones o si hay 3 o más
+        // Actualizar la lista desplegable
+        const dropdown = document.getElementById('championDropdown');
+        dropdown.classList.add('active'); // Aseguramos que el dropdown esté visible
+        showAllChampions(); // Actualizamos la lista
+        
         if (selectedChampions.size === 0 || selectedChampions.size >= 3) {
             document.getElementById('minChampionsWarning').style.display = 'none';
         }
@@ -200,7 +320,7 @@ function addChampion(championId, displayName) {
     
     updateChampionWarning();
     updatePoolChampVisibility();
-    updateButtonState(); // Agregar esta línea
+    updateButtonState();
     updatePrice(getRankByValue(fromValue).name, getRankByValue(toValue).name);
 }
 
@@ -670,6 +790,23 @@ function formatRankName(name) {
     }
     return name;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const defaultLaneInput = document.querySelector('input[name="lane-choice"]:checked');
+    const isLaneSelected = defaultLaneInput && defaultLaneInput.value !== 'none';
+
+    // Sincroniza el estado inicial del selector y la flecha
+    updateChampionSectionState(isLaneSelected);
+
+    // Limpia la selección de campeones si no hay línea seleccionada
+    if (!isLaneSelected) {
+        clearSelectedChampions();
+    }
+});
+
+
+
+
 
 updateLanePriceTag();
 updateUI();
