@@ -48,14 +48,17 @@ function convertCLPtoUSD(clpAmount) {
     // Aumentar el precio CLP en 5.4%
     const clpWithFee = clpAmount * 1.054;
     
-    // Convertir a USD (usando tasa aproximada 1 USD = 960 CLP)
+    // Convertir a USD (usando tasa aproximada 1 USD = 1017.25 CLP)
     const usdAmount = clpWithFee / 1017.25;
     
     // Añadir 0.30 USD de fee
     const finalUSD = usdAmount + 0.30;
     
-    // Redondear a 2 decimales
-    return Math.round(finalUSD * 100) / 100;
+    // Redondear a la decena de centavos más cercana
+    const roundedUSD = Math.round(finalUSD * 10) / 10;
+    
+    // Forzar dos decimales añadiendo un cero si es necesario
+    return roundedUSD.toFixed(2);
 }
 
 const LP_DISCOUNTS = {
