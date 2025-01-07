@@ -879,8 +879,10 @@ document.getElementById('reviewForm').addEventListener('submit', async (e) => {
     const submitButton = e.target.querySelector('button[type="submit"]');
     submitButton.disabled = true;
     
+    const isAnonimo = document.getElementById('anonimo').checked;
+    
     const formData = {
-        nombre: document.getElementById('nombre').value,
+        nombre: isAnonimo ? 'Anónimo' : (document.getElementById('nombre').value || 'Anónimo'),
         puntuacion: document.querySelector('input[name="puntuacion"]:checked').value,
         comentario: document.getElementById('comentario').value
     };
@@ -897,18 +899,20 @@ document.getElementById('reviewForm').addEventListener('submit', async (e) => {
                 text: 'Será publicada pronto.',
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
-                background: '#3a056a', // Fondo morado
-                color: '#fff', // Color del texto en blanco para contraste
+                background: '#3a056a',
+                color: '#fff',
             });
             e.target.reset();
+            // Asegurarse de que el input de nombre se habilite después de resetear
+            document.getElementById('nombre').disabled = false;
         } else {
             Swal.fire({
                 title: 'Error',
                 text: 'Hubo un error al enviar la reseña. Por favor, intenta de nuevo.',
                 icon: 'error',
                 confirmButtonText: 'Aceptar',
-                background: '#3a056a', // Fondo morado
-                color: '#fff', // Color del texto en blanco
+                background: '#3a056a',
+                color: '#fff',
             });
         }
     } catch (error) {
@@ -918,8 +922,8 @@ document.getElementById('reviewForm').addEventListener('submit', async (e) => {
             text: 'Hubo un error al enviar la reseña. Por favor, intenta de nuevo.',
             icon: 'error',
             confirmButtonText: 'Aceptar',
-            background: '#3a056a', // Fondo morado
-            color: '#fff', // Color del texto en blanco
+            background: '#3a056a',
+            color: '#fff',
         });
     } finally {
         submitButton.disabled = false;
@@ -935,6 +939,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Recargar reseñas cada 5 minutos
 setInterval(cargarReseñas, 300000);
+
+document.getElementById('anonimo').addEventListener('change', function(e) {
+    const nombreInput = document.getElementById('nombre');
+    nombreInput.disabled = e.target.checked;
+    if (e.target.checked) {
+        nombreInput.value = '';
+    }
+});
 
 
 updateLanePriceTag();
