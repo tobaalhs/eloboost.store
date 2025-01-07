@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="/img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <a href="https://wa.me/+56991991705" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
@@ -255,6 +256,42 @@
             </div>
             <button class="pay-button">Confirmar Boost</button>
 
+        </div>
+
+        <br><br>
+        <div class="reviews-section">
+            <h2>RESEÑAS DE NUESTROS CLIENTES</h2>
+            <div class="reviews-container">
+                <div id="loadingMessage" style="display: none; text-align: center; font-size: 18px; margin-top: 0px; line-height: 2;">
+                    Cargando reseñas...
+                </div>
+                
+            </div>
+        
+            <h3>ENVÍA TU RESEÑA</h3>
+            <form id="reviewForm" class="review-form">
+                <div class="input-group">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre/Apodo" required>
+                </div>
+                <div class="input-group">
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="puntuacion" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="puntuacion" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="puntuacion" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="puntuacion" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="puntuacion" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <textarea id="comentario" name="comentario" placeholder="Danos tu opinión sobre el boost :D" required></textarea>
+                </div>
+                <button type="submit" class="review-btn">Enviar Reseña</button>
+            </form>
         </div>
     </div>
 
