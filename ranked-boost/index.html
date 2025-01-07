@@ -273,7 +273,11 @@
             <h3>ENVÍA TU RESEÑA</h3>
             <form id="reviewForm" class="review-form">
                 <div class="input-group">
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre/Apodo" required>
+                    <div class="anonymous-option">
+                        <input type="checkbox" id="anonimo" name="anonimo">
+                        <label for="anonimo">Enviar como anónimo</label>
+                    </div>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre/Apodo">
                 </div>
                 <div class="input-group">
                     <div class="star-rating">
