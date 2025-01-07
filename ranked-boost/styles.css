@@ -1066,3 +1066,28 @@
     margin-top: 10px;
     letter-spacing: 2px;  /* Espacio entre estrellas */
 }
+
+.anonymous-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.anonymous-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #FFD700;
+}
+
+.anonymous-option label {
+    color: white;
+    cursor: pointer;
+}
+
+.input-group input[type="text"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.4);
+}
