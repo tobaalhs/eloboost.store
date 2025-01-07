@@ -788,7 +788,7 @@ payButton.addEventListener('click', () => {
     `El precio calculado es: ${precioTexto}%0A%0A` +
     `Por favor, confirma si este es el precio correcto.`;
 
-    const numeroWhatsApp = '+56991991705';
+    const numeroWhatsApp = '+56929169240';
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
     window.open(urlWhatsApp, '_blank');
 });
