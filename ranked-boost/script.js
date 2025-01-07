@@ -892,18 +892,40 @@ document.getElementById('reviewForm').addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            alert('¡Gracias por tu reseña! Será publicada pronto.');
+            Swal.fire({
+                title: '¡Gracias por tu reseña!',
+                text: 'Será publicada pronto.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                background: '#3a056a', // Fondo morado
+                color: '#fff', // Color del texto en blanco para contraste
+            });
             e.target.reset();
         } else {
-            alert('Hubo un error al enviar la reseña. Por favor, intenta de nuevo.');
+            Swal.fire({
+                title: 'Error',
+                text: 'Hubo un error al enviar la reseña. Por favor, intenta de nuevo.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                background: '#3a056a', // Fondo morado
+                color: '#fff', // Color del texto en blanco
+            });
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Hubo un error al enviar la reseña. Por favor, intenta de nuevo.');
+        Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al enviar la reseña. Por favor, intenta de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            background: '#3a056a', // Fondo morado
+            color: '#fff', // Color del texto en blanco
+        });
     } finally {
         submitButton.disabled = false;
     }
 });
+
 
 // Cargar reseñas cuando la página se cargue
 // Inicialización
