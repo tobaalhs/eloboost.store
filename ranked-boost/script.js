@@ -830,6 +830,90 @@ document.getElementById('currencyToggle').addEventListener('click', function() {
 });
 
 
+// Constantes
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzk_d73SeB6nWEKF8xTqptWy1E7fQ9OwCSm-Zr1F0j96xVq3oinA6EqM02NCO5ZBHoCgw/exec';
+
+async function cargarReseñas() {
+    const reviewsContainer = document.querySelector('.reviews-container');
+    const loadingMessage = document.getElementById('loadingMessage');
+
+    // Mostrar el mensaje de carga
+    loadingMessage.style.display = 'block';
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const data = await response.json();
+        
+        if (data.reviews && data.reviews.length > 0) {
+            reviewsContainer.innerHTML = data.reviews
+                .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+                .map(review => {
+                    const estrellas = '★'.repeat(parseInt(review.puntuacion)) + '☆'.repeat(5 - parseInt(review.puntuacion));
+                    return `
+                        <div class="review-card">
+                            <div class="review-header">
+                                <h4 class="review-name">${review.nombre}</h4>
+                                <div class="review-date">${new Date(review.fecha).toLocaleDateString()}</div>
+                            </div>
+                            <p class="review-comment">${review.comentario}</p>
+                            <div class="review-stars">${estrellas}</div>
+                        </div>
+                    `;
+                }).join('');
+        } else {
+            reviewsContainer.innerHTML = '<p class="no-reviews">¡Sé el primero en dejar una reseña!</p>';
+        }
+    } catch (error) {
+        console.error('Error al cargar reseñas:', error);
+        reviewsContainer.innerHTML = '<p class="error-message">Error al cargar las reseñas. Por favor, intenta más tarde.</p>';
+    } finally {
+        // Ocultar el mensaje de carga
+        loadingMessage.style.display = 'none';
+    }
+}
+
+
+// Manejar el envío del formulario
+document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    
+    const formData = {
+        nombre: document.getElementById('nombre').value,
+        puntuacion: document.querySelector('input[name="puntuacion"]:checked').value,
+        comentario: document.getElementById('comentario').value
+    };
+
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('¡Gracias por tu reseña! Será publicada pronto.');
+            e.target.reset();
+        } else {
+            alert('Hubo un error al enviar la reseña. Por favor, intenta de nuevo.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar la reseña. Por favor, intenta de nuevo.');
+    } finally {
+        submitButton.disabled = false;
+    }
+});
+
+// Cargar reseñas cuando la página se cargue
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    cargarReseñas();
+});
+
+// Recargar reseñas cada 5 minutos
+setInterval(cargarReseñas, 300000);
+
 
 updateLanePriceTag();
 updateUI();
