@@ -1,8 +1,0 @@
-@import url('/base-styles.css');
-
-.hero p {
-    font-size: 1.2em;
-    margin: 20px 0;
-    position: relative;
-    line-height: 1.2;
-}
