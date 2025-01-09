@@ -1,0 +1,59 @@
+@import url('/base-styles.css');
+
+.glass-container {
+    background: rgba(46, 8, 84, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-container h1 {
+    color: #FFD700;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.glass-container h2 {
+    color: #FFD700;
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+}
+
+.update-text {
+    text-align: left;
+    color: #FFD700;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.glass-container p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .glass-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .glass-container h1 {
+        font-size: 2em;
+    }
+
+    .glass-container h2 {
+        font-size: 1.5em;
+    }
+}

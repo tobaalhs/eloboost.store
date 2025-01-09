@@ -1,0 +1,55 @@
+@import url('/base-styles.css');
+
+.hero {
+    gap: 20px;
+}
+
+.features {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.features p {
+    margin: 10px 0;
+}
+
+.start-btn {
+    letter-spacing: 2px;
+    min-width: 200px;
+}
+
+.boosters-bold {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
+    }
+    to {
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    }
+}
+
+.start-btn {
+    background-color: #FFD700;
+    color: #4A0082;
+    padding: 30px 130px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 30px;
+    position: relative;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    animation: breathe 4s ease-in-out infinite;
+    will-change: transform;
+}

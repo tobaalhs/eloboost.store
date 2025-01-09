@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ranked Boost - ELOBOOST STORE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<a href="https://wa.me/+56929169240" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+<body>
+    <div class="top-banner">
+        ¡DESCUENTOS DE INICIO DE TEMPORADA 2025! MEJORA TU RANGO AHORA.
+    </div>
+
+    <nav class="navbar">
+        <a href="/" class="logo"><b>ELO<span>BOOST</span> STORE</b></a>
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
+        <div class="nav-links">
+            <!-- Menú desplegable de LoL -->
+            <div class="dropdown-navbar">
+                <a href="#" class="dropdown-navbar-trigger">League of Legends</a>
+                <div class="dropdown-navbar-content">
+                    <a href="/lol/ranked-boost/">Ranked Boost</a>
+                    <a href="/lol/placement-boost/">Placement Boost</a>
+                    <a href="/lol/cuentas/">Stock Cuentas</a>
+                </div>
+            </div>
+            
+            <!-- Menú desplegable de Valorant -->
+            <div class="dropdown-navbar">
+                <a href="#" class="dropdown-navbar-trigger">Valorant</a>
+                <div class="dropdown-navbar-content">
+                    <a href="/valorant/ranked-boost/">Ranked Boost</a>
+                    <a href="/valorant/placement-boost/">Placement Boost</a>
+                    <a href="/valorant/cuentas/">Stock Cuentas</a>
+                </div>
+            </div>
+            
+            <!-- Enlaces regulares -->
+            <a href="/nuestros-boosters/">Nuestros Boosters</a>
+            <a href="/trabaja-con-nosotros/">Ser Booster</a>
+            <a href="/faq/">FAQ</a>
+            <a href="/sobre-nosotros/">Sobre nosotros</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>SELECCIONA TU RANGO ACTUAL Y AL QUE QUIERES LLEGAR</h1>
+        <h2>BOOST DESDE HIERRO HASTA INMORTAL EN EL SERVIDOR DE LATAM</h2>
+        <div class="slider-container">
+            <h3 class="options-title1">Elige los rangos deslizando!</h3><br><br><br>
+            <div class="ranks-display">
+                <div class="rank-display from">
+                    <div class="rank-label">Rango Actual</div>
+                    <div class="rank-images-container">
+                        <!-- Hierro -->
+                        <img class="rank-image" data-rank="iron_3" src="/img/valorant/Iron_3_Rank.png" alt="Hierro 3">
+                        <img class="rank-image" data-rank="iron_2" src="/img/valorant/Iron_2_Rank.png" alt="Hierro 2">
+                        <img class="rank-image" data-rank="iron_1" src="/img/valorant/Iron_1_Rank.png" alt="Hierro 1">
+                        
+                        <!-- Bronce -->
+                        <img class="rank-image" data-rank="bronze_3" src="/img/valorant/Bronze_3_Rank.png" alt="Bronce 3">
+                        <img class="rank-image" data-rank="bronze_2" src="/img/valorant/Bronze_2_Rank.png" alt="Bronce 2">
+                        <img class="rank-image" data-rank="bronze_1" src="/img/valorant/Bronze_1_Rank.png" alt="Bronce 1">
+                        
+                        <!-- Plata -->
+                        <img class="rank-image" data-rank="silver_3" src="/img/valorant/Silver_3_Rank.png" alt="Plata 3">
+                        <img class="rank-image" data-rank="silver_2" src="/img/valorant/Silver_2_Rank.png" alt="Plata 2">
+                        <img class="rank-image" data-rank="silver_1" src="/img/valorant/Silver_1_Rank.png" alt="Plata 1">
+                        
+                        <!-- Oro -->
+                        <img class="rank-image" data-rank="gold_3" src="/img/valorant/Gold_3_Rank.png" alt="Oro 3">
+                        <img class="rank-image" data-rank="gold_2" src="/img/valorant/Gold_2_Rank.png" alt="Oro 2">
+                        <img class="rank-image" data-rank="gold_1" src="/img/valorant/Gold_1_Rank.png" alt="Oro 1">
+                        
+                        <!-- Platino -->
+                        <img class="rank-image" data-rank="platinum_3" src="/img/valorant/Platinum_3_Rank.png" alt="Platino 3">
+                        <img class="rank-image" data-rank="platinum_2" src="/img/valorant/Platinum_2_Rank.png" alt="Platino 2">
+                        <img class="rank-image" data-rank="platinum_1" src="/img/valorant/Platinum_1_Rank.png" alt="Platino 1">
+                        
+                        <!-- Diamante -->
+                        <img class="rank-image" data-rank="diamond_3" src="/img/valorant/Diamond_3_Rank.png" alt="Diamante 3">
+                        <img class="rank-image" data-rank="diamond_2" src="/img/valorant/Diamond_2_Rank.png" alt="Diamante 2">
+                        <img class="rank-image" data-rank="diamond_1" src="/img/valorant/Diamond_1_Rank.png" alt="Diamante 1">
+                        
+                        <!-- Ascendente -->
+                        <img class="rank-image" data-rank="ascendant_3" src="/img/valorant/Ascendant_3_Rank.png" alt="Ascendente 3">
+                        <img class="rank-image" data-rank="ascendant_2" src="/img/valorant/Ascendant_2_Rank.png" alt="Ascendente 2">
+                        <img class="rank-image" data-rank="ascendant_1" src="/img/valorant/Ascendant_1_Rank.png" alt="Ascendente 1">
+                        
+                        <!-- Inmortal -->
+                        <img class="rank-image" data-rank="immortal_1" src="/img/valorant/Immortal_1_Rank.png" alt="Inmortal">
+                    </div>
+                    <div class="rank-text-container">
+                        <div class="rank-text" id="rankTextFrom"></div>
+                    </div>
+                </div>
+                <div class="rank-arrow">→</div>
+                <div class="rank-display to">
+                    <div class="rank-label">Rango Objetivo</div>
+                    <div class="rank-images-container">
+                        <!-- Hierro -->
+                        <img class="rank-image" data-rank="iron_3" src="/img/valorant/Iron_3_Rank.png" alt="Hierro 3">
+                        <img class="rank-image" data-rank="iron_2" src="/img/valorant/Iron_2_Rank.png" alt="Hierro 2">
+                        <img class="rank-image" data-rank="iron_1" src="/img/valorant/Iron_1_Rank.png" alt="Hierro 1">
+                        
+                        <!-- Bronce -->
+                        <img class="rank-image" data-rank="bronze_3" src="/img/valorant/Bronze_3_Rank.png" alt="Bronce 3">
+                        <img class="rank-image" data-rank="bronze_2" src="/img/valorant/Bronze_2_Rank.png" alt="Bronce 2">
+                        <img class="rank-image" data-rank="bronze_1" src="/img/valorant/Bronze_1_Rank.png" alt="Bronce 1">
+                        
+                        <!-- Plata -->
+                        <img class="rank-image" data-rank="silver_3" src="/img/valorant/Silver_3_Rank.png" alt="Plata 3">
+                        <img class="rank-image" data-rank="silver_2" src="/img/valorant/Silver_2_Rank.png" alt="Plata 2">
+                        <img class="rank-image" data-rank="silver_1" src="/img/valorant/Silver_1_Rank.png" alt="Plata 1">
+                        
+                        <!-- Oro -->
+                        <img class="rank-image" data-rank="gold_3" src="/img/valorant/Gold_3_Rank.png" alt="Oro 3">
+                        <img class="rank-image" data-rank="gold_2" src="/img/valorant/Gold_2_Rank.png" alt="Oro 2">
+                        <img class="rank-image" data-rank="gold_1" src="/img/valorant/Gold_1_Rank.png" alt="Oro 1">
+                        
+                        <!-- Platino -->
+                        <img class="rank-image" data-rank="platinum_3" src="/img/valorant/Platinum_3_Rank.png" alt="Platino 3">
+                        <img class="rank-image" data-rank="platinum_2" src="/img/valorant/Platinum_2_Rank.png" alt="Platino 2">
+                        <img class="rank-image" data-rank="platinum_1" src="/img/valorant/Platinum_1_Rank.png" alt="Platino 1">
+                        
+                        <!-- Diamante -->
+                        <img class="rank-image" data-rank="diamond_3" src="/img/valorant/Diamond_3_Rank.png" alt="Diamante 3">
+                        <img class="rank-image" data-rank="diamond_2" src="/img/valorant/Diamond_2_Rank.png" alt="Diamante 2">
+                        <img class="rank-image" data-rank="diamond_1" src="/img/valorant/Diamond_1_Rank.png" alt="Diamante 1">
+                        
+                        <!-- Ascendente -->
+                        <img class="rank-image" data-rank="ascendant_3" src="/img/valorant/Ascendant_3_Rank.png" alt="Ascendente 3">
+                        <img class="rank-image" data-rank="ascendant_2" src="/img/valorant/Ascendant_2_Rank.png" alt="Ascendente 2">
+                        <img class="rank-image" data-rank="ascendant_1" src="/img/valorant/Ascendant_1_Rank.png" alt="Ascendente 1">
+                        
+                        <!-- Inmortal -->
+                        <img class="rank-image" data-rank="immortal_1" src="/img/valorant/Immortal_1_Rank.png" alt="Inmortal">
+                    </div>
+                    <div class="rank-text-container">
+                        <div class="rank-text" id="rankTextTo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                    <div class="slider-track"></div>
+                    <div class="slider-range"></div>
+                    <div class="slider-thumb" id="thumbFrom" role="slider" aria-label="From rank" tabindex="0"> < </div>
+                    <div class="slider-thumb" id="thumbTo" role="slider" aria-label="To rank" tabindex="0">></div>
+                </div>
+            </div>
+            
+            <div class="title-container">
+                <h3 class="options-title">Rol preferido:
+                    <span class="info-icon">
+                        i
+                        <span class="info-tooltip">Selecciona tu rol preferido. Nuestros boosters se especializarán en ese rol durante el boost.</span>
+                    </span>
+                </h3>
+                <span class="price-tag extra" id="lane-price-tag">+10%</span>
+            </div>
+            <div class="range-options">
+                <label class="range-option">
+                    <input type="radio" name="lane-choice" value="none" checked>
+                    <span class="range-button">No elegir</span>
+                </label>
+                <label class="range-option">
+                    <input type="radio" name="lane-choice" value="sentinel">
+                    <span class="range-button">Centinela</span>
+                </label>
+                <label class="range-option">
+                    <input type="radio" name="lane-choice" value="duelist">
+                    <span class="range-button">Duelista</span>
+                </label>
+                <label class="range-option">
+                    <input type="radio" name="lane-choice" value="initiator">
+                    <span class="range-button">Iniciador</span>
+                </label>
+                <label class="range-option">
+                    <input type="radio" name="lane-choice" value="controller">
+                    <span class="range-button">Controlador</span>
+                </label>
+            </div>
+            
+            <!-- Sección de Agentes -->
+            <div class="title-container">
+                <h3 class="options-title">Agentes específicos:
+                    <span class="info-icon">
+                        i
+                        <span class="info-tooltip">Selecciona los agentes con los que quieres que se jueguen las partidas.</span>
+                    </span>
+                </h3>
+                <span class="price-tag extra">+25%</span>
+            </div>
+            <div class="champion-search">
+                <div class="search-input-container">
+                    <input type="text" id="championSearch" placeholder="Seleccionar agente..." class="champion-search-input">
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div id="championDropdown" class="champion-dropdown"></div>
+            </div>
+            <div class="pool-champ-container" id="poolChampContainer" style="display: none;">
+                <h3 class="pool-champ-title">Pool Agents</h3>
+                <div id="selectedChampions" class="selected-champions"></div>
+                <div id="championWarning" class="champion-warning"></div>
+            </div>
+
+            <div class="price-display">
+                <h3 class="price-title">Precio Total:</h3>
+                <div class="price-amount-container">
+                    <div class="price-amount" id="totalPrice">0 CLP</div>
+                    <span class="price-approx" id="price-approx" style="display: none;">APROX</span>
+                </div>
+                <div class="price-disclaimer" id="price-disclaimer" style="display: none;">
+                    El precio puede variar según los LPs actuales de tu cuenta. Consultar al DM
+                </div>
+            </div>
+            
+            <div class="currency-toggle">
+                <button id="currencyToggle" class="currency-button">
+                    Cambiar a USD
+                </button>
+            </div>
+
+            <div id="minChampionsWarning" style="display: none;" class="min-champions-warning">
+            </div>
+            <button class="pay-button">Confirmar Boost</button>
+
+        </div>
+
+        <br><br>
+        <div class="reviews-section">
+            <h2>RESEÑAS DE NUESTROS CLIENTES</h2>
+            <div class="reviews-container">
+                <div id="loadingMessage" style="display: none; text-align: center; font-size: 18px; margin-top: 0px; line-height: 2;">
+                    Cargando reseñas...
+                </div>
+                
+            </div>
+        
+            <h3>ENVÍA TU RESEÑA</h3>
+            <form id="reviewForm" class="review-form">
+                <div class="input-group">
+                    <div class="anonymous-option">
+                        <input type="checkbox" id="anonimo" name="anonimo">
+                        <label for="anonimo">Enviar como anónimo</label>
+                    </div>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre/Apodo">
+                </div>
+                <div class="input-group">
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="puntuacion" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="puntuacion" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="puntuacion" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="puntuacion" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="puntuacion" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <textarea id="comentario" name="comentario" placeholder="Danos tu opinión sobre el boost :D" required></textarea>
+                </div>
+                <button type="submit" class="review-btn">Enviar Reseña</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loadingMessage" style="display: none;">Cargando...</div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <a href="/ranked-boost/">Ranked Boost</a>
+                <a href="/placement-boost/">Placement Boost</a>
+                <a href="/cuentas/">Stock Cuentas</a>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Nosotros</h3>
+                <a href="/nuestros-boosters/">Nuestros Boosters</a>
+                <a href="/trabaja-con-nosotros/">Ser Booster</a>
+                <a href="/sobre-nosotros/">Sobre nosotros</a>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Ayuda</h3>
+                <a href="/faq/">FAQ</a>
+                <a href="/terminos-y-condiciones/">Términos y Condiciones</a>
+                <a href="/politica-de-privacidad/">Política de privacidad</a>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Comunidad</h3>
+                <div class="social-icons">
+                    <a href="https://discord.gg/T2rfAVZxCg" aria-label="Discord">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-discord"><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7.5 16.5c3.5 1 5.5 1 9 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5 0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429 0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/eloboost.store/" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2025 eloboost.store</p>
+        </div>
+    </footer>
+
+    <script type="module" src="price-calculator.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,537 @@
+@import url('/base-styles.css');
+
+.accounts-section {
+    background: linear-gradient(rgba(74, 0, 130, 0.8), rgba(46, 8, 84, 0.65)), 
+                url('https://images3.alphacoders.com/135/1350572.jpeg');
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    color: white;
+    padding: 40px 20px;
+    overflow: auto;
+}
+
+.accounts-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#FFD700 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.accounts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    background: rgba(74, 0, 130, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+
+.accounts-section h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #FFD700;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.accounts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.account-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.account-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.1), transparent);
+    pointer-events: none;
+}
+
+.account-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.account-info {
+    text-align: center;
+}
+
+.account-rank {
+    font-size: 1.5em;
+    color: #FFD700;
+    margin: 10px 0;
+}
+
+.account-details {
+    font-size: 1.1em;
+    margin: 8px 0;
+}
+
+.account-price {
+    font-size: 1.3em;
+    color: #FFD700;
+    margin-top: 15px;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Reducido de 0.9 a 0.5 para menos opacidad */
+    backdrop-filter: blur(5px); /* Añadido efecto blur */
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 17px; /* Compensar el ancho de la scrollbar para evitar el salto */
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(74, 0, 130, 0.95), rgba(46, 8, 84, 0.95));
+    margin: 2% auto; /* Reducido de 5% para que ocupe más espacio */
+    padding: 40px;
+    border-radius: 15px;
+    width: 95%; /* Aumentado de 90% */
+    max-width: 1200px; /* Aumentado de 800px */
+    position: relative;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: white; /* Asegura que todo el texto sea blanco por defecto */
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #FFD700;
+}
+
+.modal-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .modal-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .accounts-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+/* Estilos para el carrusel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 400px; /* Altura fija para todas las imágenes */
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.carousel-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: #FFD700;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Ajustes al modal */
+.modal-content {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Ajustes al carrusel */
+.carousel-slide {
+    width: 100%;
+    height: 600px; /* Aumentado para mejor visualización */
+}
+
+.carousel-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: background 0.3s ease;
+}
+
+.carousel-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Mejoras en los detalles */
+.account-details-info {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.account-details-info p {
+    margin: 12px 0;
+    color: white;
+    font-size: 1.1em;
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .carousel-slide {
+        height: 400px;
+    }
+}
+
+/* Actualiza estos estilos en el CSS */
+
+/* Modificar el layout del modal para que sea más amplio */
+.modal-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Cambiamos a 2fr 1fr para dar más espacio al carrusel */
+    gap: 30px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+/* Ajustar el contenedor del carrusel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3); /* Fondo oscuro para cuando la imagen no ocupe todo el espacio */
+}
+
+/* Ajustar el slide para proporción 16:9 aproximadamente */
+.carousel-slide {
+    width: 100%;
+    padding-top: 56.25%; /* Proporción 16:9 */
+    position: relative;
+}
+
+/* Ajustar las imágenes dentro del carrusel */
+.carousel-slide img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto; /* Permitir que el ancho sea automático */
+    height: auto; /* Permitir que la altura sea automática */
+    object-fit: contain; /* Mantener proporción sin deformar */
+}
+
+/* Ajustar los botones del carrusel para la nueva altura */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    font-size: 24px;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .modal-details {
+        grid-template-columns: 1fr; /* En móvil, una columna */
+    }
+    
+    .carousel-slide {
+        padding-top: 75%; /* Proporción 4:3 para móviles */
+    }
+}
+
+.account-details-info .pay-button {
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 35px;
+    font-size: 1.1em;
+}
+
+.sell-account-section {
+    max-width: 1200px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(74, 0, 130, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.sell-account-section h2 {
+    color: #FFD700;
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.sell-account-section p {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.sell-button {
+    display: inline-block;
+    background-color: #FFD700;
+    color: #4A0082;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.sell-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    background-color: #ffea73;
+}
+
+@media (max-width: 768px) {
+    .sell-account-section {
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .sell-account-section h2 {
+        font-size: 1.8em;
+    }
+
+    .sell-account-section p {
+        font-size: 1.1em;
+    }
+
+    .sell-button {
+        padding: 12px 30px;
+        font-size: 1.1em;
+    }
+}
+
+.no-accounts-message {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin: 20px auto; /* Cambiado a auto para centrar */
+    max-width: 600px; /* Añadido ancho máximo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Altura mínima para mejor apariencia */
+}
+
+.no-accounts-message h3 {
+    color: #FFD700;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.no-accounts-message p {
+    color: white;
+    font-size: 1.2em;
+    line-height: 1.5;
+    max-width: 80%; /* Limitar el ancho del texto */
+    margin: 0 auto; /* Centrar el texto */
+}
+
+/* Asegurarnos que el contenedor mantiene el centrado */
+.accounts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px; /* Dar espacio suficiente */
+}
+
+.accounts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .modal-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .accounts-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+        gap: 20px;
+        max-width: 500px;
+    }
+
+    .account-card {
+        margin: 0 10px;
+        padding: 15px;
+    }
+
+    .account-image {
+        height: 220px;
+    }
+
+    .account-rank {
+        font-size: 1.4em;
+        margin: 12px 0;
+    }
+
+    .account-details {
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+
+    .account-price {
+        font-size: 1.5em;
+        margin-top: 15px;
+        padding: 8px;
+    }
+
+    .accounts-section {
+        padding: 20px 10px;
+    }
+
+    .accounts-section h1 {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+}
