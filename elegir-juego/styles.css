@@ -1,0 +1,223 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.section {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(76, 29, 149, 0.6),
+        rgba(91, 33, 182, 0.6)
+    );
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.section:hover::before {
+    background: linear-gradient(
+        135deg,
+        rgba(76, 29, 149, 0.4),
+        rgba(91, 33, 182, 0.4)
+    );
+}
+
+.game-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.8) saturate(1.2);
+}
+
+.section:hover .game-image {
+    transform: scale(1.05);
+    filter: brightness(0.9) saturate(1.3);
+}
+
+.glow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+    );
+}
+
+.section:hover .glow-effect {
+    opacity: 1;
+}
+
+h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 2.5em;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    margin: 0;
+    padding: 15px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    animation: titleAppear 1s ease-out forwards;
+    opacity: 0;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section:hover h2 {
+    transform: translate(-50%, -50%) scale(1.05);
+    background: rgba(0, 0, 0, 0.4);
+    letter-spacing: 3px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes particlesFade {
+    0% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes titleAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-50%, -55%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 17px;
+    background: linear-gradient(45deg, #4a148c, #6a1b9a, #4a148c);
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.section:hover h2::before {
+    opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        padding: 12px 24px;
+    }
+}
+
+.logo-overlay {
+    position: fixed;
+    top: 32%;
+    left: 41.95%;
+    z-index: 9999; /* Asegura que esté encima de todo */
+    pointer-events: none; /* Evita interferir con interacciones del usuario */
+}
+
+.logo-overlay img {
+    max-width: 30%; /* Ajusta el tamaño del logo según sea necesario */
+    max-height: 30%;
+}
+
+@media (max-width: 768px) { /* Dispositivos con ancho menor o igual a 768px */
+    .logo-overlay {
+        top: 50%; /* Ajusta según sea necesario */
+        left: 50%; /* Centra horizontalmente */
+        transform: translate(-50%, -50%); /* Asegura el centrado exacto */
+    }
+
+    .logo-overlay img {
+        max-width: 100%; /* Tamaño más pequeño para móviles */
+        max-height: 100%;
+    }
+}
