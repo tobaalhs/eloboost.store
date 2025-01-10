@@ -53,3 +53,22 @@
     animation: breathe 4s ease-in-out infinite;
     will-change: transform;
 }
+
+/* Update the button styles for mobile */
+@media (max-width: 768px) {
+    .start-btn {
+        width: 90%; /* Make button wider on mobile */
+        padding: 20px 40px; /* Increase padding for larger touch target */
+        font-size: 1.4em; /* Larger font size */
+        margin: 30px auto; /* Center the button */
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .start-btn{
+        width: 95%; /* Even wider on smaller screens */
+        font-size: 1.3em; /* Slightly adjust font size */
+        padding: 18px 30px; /* Adjust padding */
+    }
+}
