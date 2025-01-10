@@ -7,7 +7,7 @@ body, html {
 }
 
 .container {
-    display: flex;
+    display: flex; /* Volvemos a flex en lugar de grid */
     height: 100vh;
     width: 100vw;
     position: relative;
@@ -189,7 +189,9 @@ h2::before {
     .container {
         flex-direction: column;
     }
-    
+    .section {
+        height: 50vh; /* Cada sección ocupará la mitad de la altura de la pantalla */
+    }
     h2 {
         font-size: 1.5em;
         padding: 12px 24px;
@@ -198,22 +200,29 @@ h2::before {
 
 .logo-overlay {
     position: fixed;
-    top: 32%;
-    left: 41.95%;
-    z-index: 9999; /* Asegura que esté encima de todo */
-    pointer-events: none; /* Evita interferir con interacciones del usuario */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    width: 15%; /* Reducido de 30% a 15% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo-overlay img {
-    max-width: 30%; /* Ajusta el tamaño del logo según sea necesario */
-    max-height: 30%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 @media (max-width: 768px) { /* Dispositivos con ancho menor o igual a 768px */
     .logo-overlay {
-        top: 50%; /* Ajusta según sea necesario */
-        left: 50%; /* Centra horizontalmente */
-        transform: translate(-50%, -50%); /* Asegura el centrado exacto */
+        width: 50%; /* Ajustamos el tamaño del logo para móvil */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .logo-overlay img {
