@@ -562,3 +562,86 @@
         text-align: center;
     }
 }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* Ensure horizontal layout */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 0; /* Allows content to shrink below minimum content size */
+}
+
+/* Update responsive design to maintain horizontal layout longer */
+@media (max-width: 1024px) {
+    .footer-section h3 {
+        font-size: 0.9em;
+    }
+    
+    .footer-section a {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-wrap: wrap; /* Allow wrapping only on very small screens */
+    }
+    
+    .footer-section {
+        flex: 1 1 auto;
+    }
+}
+/* Update these CSS rules for the footer */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 160px; /* Ensure minimum width for readability */
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: 0; /* Reset min-width on mobile */
+    }
+
+    /* Make community section full width */
+    .footer-section:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+}
