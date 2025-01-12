@@ -44,7 +44,7 @@ function showAccountDetails(account) {
                 </div>
                 <div style="margin-top: 30px; text-align: center;">
                     <h3 style="color: #FFD700; font-size: 1.8em; margin-bottom: 20px;">Precio: ${account.price}</h3>
-                    <a href="https://wa.me/56991991705?text=Hola,%20me%20interesa%20la%20cuenta%20con%20ID:%20${account.id}%20(${account.rank}%20de%20nivel%20${account.level})" 
+                    <a href="https://wa.me/+56929169240?text=Hola,%20me%20interesa%20la%20cuenta%20con%20ID:%20${account.id}%20(${account.rank}%20de%20nivel%20${account.level})" 
                        class="pay-button" 
                        target="_blank" 
                        style="text-decoration: none; display: inline-block;">
