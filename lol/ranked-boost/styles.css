@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .rank-display {
@@ -507,6 +507,7 @@
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
+    z-index: 100000; 
 }
 
 .champion-search-input {
@@ -536,7 +537,7 @@
     border: 2px solid #FFD700;
     border-radius: 10px;
     margin-top: 5px;
-    z-index: 1000;
+    z-index: 1000; 
 }
 
 .champion-dropdown.active {
@@ -983,6 +984,7 @@
     padding: 50px 20px;
     text-align: center;
     position: relative;
+    z-index: 1; 
 }
 
 .reviews-section h2 {
