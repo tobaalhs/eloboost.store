@@ -22,6 +22,32 @@ const champions = [
 window.selectedChampions = new Set();
 window.availableChampions = new Set(champions);
 
+function updateSummary() {
+    // Obtener los valores actuales
+    const fromRank = getRankByValue(fromValue);
+    const toRank = getRankByValue(toValue);
+    const selectedQueue = document.querySelector('input[name="queue-choice"]:checked').value;
+    const selectedLP = document.querySelector('input[name="lp-range"]:checked').value;
+    const selectedLPGain = document.querySelector('input[name="lp-gain"]:checked').value;
+    const selectedLane = document.querySelector('input[name="lane-choice"]:checked').value;
+    const selectedFlash = document.querySelector('input[name="flash-choice"]:checked').value;
+    
+    // Actualizar los elementos del resumen
+    document.getElementById('summaryFromRank').textContent = fromRank.name;
+    document.getElementById('summaryToRank').textContent = toRank.name;
+    document.getElementById('summaryQueue').textContent = selectedQueue === 'soloq' ? 'SoloQ' : 'FlexQ';
+    document.getElementById('summaryLP').textContent = selectedLP;
+    document.getElementById('summaryLPGain').textContent = selectedLPGain;
+    document.getElementById('summaryLane').textContent = formatLaneName(selectedLane);
+    document.getElementById('summaryFlash').textContent = formatFlashOption(selectedFlash);
+
+    // Agregar actualización del nick
+    const nickInput = document.getElementById('lol-nick');
+    const summaryNick = document.getElementById('summaryNick');
+}
+
+document.getElementById('lol-nick').addEventListener('input', updateSummary);
+
 function clearSelectedChampions() {
     selectedChampions.clear();
     window.availableChampions = new Set(champions);
@@ -475,6 +501,7 @@ function updateUI() {
     if (fromRank && toRank && fromRank.name && toRank.name) {
         updatePrice(fromRank.name, toRank.name);
     }
+    updateSummary();
 }
 
 let currentCurrency = 'CLP'; // Variable global para tracking de la moneda actual
@@ -609,6 +636,7 @@ function handleMove(e) {
             toRank: toRank.name
         });
         updateUI();
+        updateSummary();
         updatePrice(fromRank.name, toRank.name);
     }
 }
@@ -744,6 +772,19 @@ payButton.addEventListener('click', () => {
         return;
     }
 
+    const nickValue = document.getElementById('lol-nick').value.trim();
+    if (!nickValue) {
+        Swal.fire({
+            title: 'Nick requerido',
+            text: 'Por favor, ingresa tu nick de LoL para continuar',
+            icon: 'warning',
+            confirmButtonText: 'Entendido',
+            background: '#3a056a',
+            color: '#fff',
+        });
+        return;
+    }
+
     // Si llegamos aquí, o no hay campeones seleccionados o hay 3 o más
     const fromRank = getRankByValue(fromValue);
     const toRank = getRankByValue(toValue);
@@ -776,6 +817,7 @@ payButton.addEventListener('click', () => {
 
     const precioTexto = document.getElementById('totalPrice').textContent;
     const mensaje = `¡Hola! Me gustaría solicitar un Boost:%0A%0A` +
+    `Nick de LoL: ${encodeURIComponent(nickValue)}%0A` +
     `Rango Actual: ${fromRank.name}%0A` +
     `Rango Objetivo: ${toRank.name}%0A` +
     `Cola de Emparejamiento: ${queueText}%0A` +
@@ -948,6 +990,9 @@ document.getElementById('anonimo').addEventListener('change', function(e) {
     }
 });
 
+document.querySelectorAll('input[name="queue-choice"], input[name="lp-range"], input[name="lp-gain"], input[name="lane-choice"], input[name="flash-choice"]').forEach(input => {
+    input.addEventListener('change', updateSummary);
+});
 
 updateLanePriceTag();
 updateUI();
