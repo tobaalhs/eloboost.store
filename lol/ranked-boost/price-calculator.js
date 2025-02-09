@@ -132,14 +132,14 @@ function calculatePrice(fromRank, toRank, lpRange, selectedLane, lpGain = '20-25
 
     if (fromTier === 'master' || fromTier === 'grandmaster' || toTier === 'master' || toTier === 'grandmaster' || toTier === 'challenger') {
         if (fromTier === 'master' && toTier === 'grandmaster') {
-            debugLog('Precio fijo Master a Grandmaster: 25000');
-            totalPrice = 25000;
+            debugLog('Precio fijo Master a Grandmaster: 32000');
+            totalPrice = 32000;
         } else if (fromTier === 'master' && toTier === 'challenger') {
-            debugLog('Precio Master a Challenger: 75000');
-            totalPrice = 75000;
+            debugLog('Precio Master a Challenger: 92000');
+            totalPrice = 92000;
         } else if (fromTier === 'grandmaster' && toTier === 'challenger') {
-            debugLog('Precio fijo Grandmaster a Challenger: 50000');
-            totalPrice = 50000;
+            debugLog('Precio fijo Grandmaster a Challenger: 60000');
+            totalPrice = 60000;
         } else {
             if (fromDiv !== 4) {
                 const divisionsNeeded = fromDiv;
@@ -162,10 +162,10 @@ function calculatePrice(fromRank, toRank, lpRange, selectedLane, lpGain = '20-25
                 totalPrice += 0;
             } else if (toTier === 'grandmaster') {
                 debugLog('Precio final hasta Grandmaster: 25000');
-                totalPrice += 25000;
+                totalPrice += 32000;
             } else if (toTier === 'challenger') {
                 debugLog('Precio final hasta Challenger: 102500');
-                totalPrice += 75000;
+                totalPrice += 92000;
             }
         }
     } else {
