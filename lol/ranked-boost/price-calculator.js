@@ -68,7 +68,7 @@ const LP_DISCOUNTS = {
 };
 
 const LP_GAIN_MODIFIERS = {
-    '1-19': 1.2,
+    '1-19': 1.35,
     '20-25': 1,
     '26+': 0.95
 };
