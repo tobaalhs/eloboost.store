@@ -26,22 +26,22 @@ const DIVISION_PRICES = {
     iron: 2000,
     bronze: 2000,
     silver: 2500,
-    gold: 3000,
-    platinum: 3500,
-    emerald: 5000,
-    diamond: 8000
+    gold: 3500,
+    platinum: 4500,
+    emerald: 6500,
+    diamond: 8500
 };
 
 const LEAGUE_COMPLETE_PRICES = {
     iron: 7000,
     bronze: 7000,
     silver: 9000,
-    gold: 11000,
-    platinum: 12500,
-    emerald: 18500,
-    diamond: 30000,
-    master: 30000,
-    grandmaster: 50000
+    gold: 12500,
+    platinum: 15000,
+    emerald: 24000,
+    diamond: 32000,
+    master: 32000,
+    grandmaster: 60000
 };
 
 function convertCLPtoUSD(clpAmount) {
